@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
-using Automaton;
-
+using Automaton.Attributes;
 var assembly = Assembly.GetExecutingAssembly();
 Type[] types = assembly.GetExportedTypes();
 

@@ -1,12 +1,14 @@
-namespace Automaton;
-
-[AttributeUsage(AttributeTargets.Class)]
-public class AlphabetAttribute(params char[] symbols) : Attribute
+namespace Automaton.Attributes
 {
-    public List<char> Symbols { get; private set; } = [.. symbols];
-
-    public override string ToString()
+    [AttributeUsage(AttributeTargets.Class)]
+    public class AlphabetAttribute(params char[] symbols) : Attribute
     {
-        return string.Join("", Symbols);
+        public List<char> Symbols { get; private set; } = [.. symbols];
+
+        public override string ToString()
+        {
+            return string.Join("", Symbols);
+        }
     }
 }
+
