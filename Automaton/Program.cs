@@ -1,18 +1,15 @@
-﻿using Automaton;
+﻿using System.Reflection;
+using Automaton;
 
-Language language = new();
-language.Strings.Add("Hello world!");
+var assembly = Assembly.GetExecutingAssembly();
+Type[] types = assembly.GetExportedTypes();
 
-Console.WriteLine(language.Strings[0]);
-
-Attribute[] attributes = Attribute.GetCustomAttributes(typeof(Language));
-foreach(Attribute attr in attributes)
+foreach (var type in types)
 {
-    if (attr is AuthorAttribute author)
+    AlphabetAttribute? attr = type.GetCustomAttribute<AlphabetAttribute>();
+    if ( attr is not null)
     {
-        string name = author.Name;
-        double v = author.Version;
-
-        Console.WriteLine($"Author={name} and Version={v}");
-    }
+        Console.WriteLine($"Language {type.FullName} has alphabet \"{attr}\"");
+    }    
 }
+
